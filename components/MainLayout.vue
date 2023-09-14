@@ -9,98 +9,84 @@ const route = useRoute()
 </script>
 
 <template lang="pug">
-.flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site.gap-8.px-4
-  .fixed.top-0.z-20.flex.w-full
-    .p-2.absolute.top-2.right-2.cursor-pointer(@click="isDark = !isDark")
+.flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site
+  .sticky.top-0.z-20.flex.w-full.items-center.gap-2.px-4.py-2
+
+    a.opacity-60.hover-opacity-100.transition(href="/") academy
+    a.p-0.opacity-40.hover-opacity-100.transition(href="https://chromatone.center") chromatone.center
+    .flex-auto
+    .cursor-pointer.mt-2px.opacity-30.hover-opacity-80(@click="isDark = !isDark")
       .i-la-sun(v-if="!isDark")
       .i-carbon-moon(v-else)
-    a.p-2.flex.items-center.gap-2(href="https://chromatone.center" target="_blank") 
-      .i-la-arrow-left.mt-1
-      .p-0 chromatone.center
   .max-w-150.mx-auto
-    a.flex.flex-col.gap-4.mt-16(href="/")
-      img.w-30(src="/logo.svg")
+    .flex.items-center.gap-4.mt-12.mb-10
+      img.w-20.sm-w-30.ml-4(src="/logo.svg")
+      .flex.flex-col.gap-2
+        .flex.flex-wrap.items-end.gap-2.capitalize
+          a.text-4xl.font-bold(href="/") Chromatone
+          a.text-md.opacity-40(:href="`/${f?.page_type}/`") {{ f.page_type }}
+        .text-3xl {{ f.title }}
     .flex.flex-col.markdown-body.max-w-150
-      .text-4xl.mb-6 {{ f.title }}
-      transition(name="fade")
-        content(:key="route.path")
+
+
+      content(:key="route.path")
     a.flex.flex-col.gap-4.items-center.my-6(href="/")
       img.w-10(src="/logo.svg")
 
-  
 </template>
 
 <style lang="postcss">
-.fade-enter-active {
-  transition: all 0.5s ease;
-}
-
-.fade-leave-to {
-  opacity: 0;
-}
-
-.fade-enter-from {
-  opacity: 0;
-}
-
 html {
   @apply bg-light-500;
+}
+
+html * {
+  @apply transition duration-500;
 }
 
 html.dark {
   @apply bg-dark-100;
 }
 
-:root {
-  --font-family-base: "Commissioner", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
-  --font-family-mono: "Fira Code", source-code-pro, Menlo, Monaco, Consolas,
-    "Courier New", monospace;
-}
 
-.site {
-  font-family: var(--font-family-base);
-}
-
-@font-face {
-  font-family: "Commissioner";
-  font-style: normal;
-  font-weight: 400;
-  src: local(""),
-    url("/fonts/commissioner-v3-latin_cyrillic-ext_cyrillic-regular.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url("/fonts/commissioner-v3-latin_cyrillic-ext_cyrillic-regular.woff") format("woff");
-  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
-@font-face {
-  font-family: "Commissioner";
-  font-style: normal;
-  font-weight: 700;
-  src: local(""),
-    url("/fonts/commissioner-v3-latin_cyrillic-ext_cyrillic-700.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url("/fonts/commissioner-v3-latin_cyrillic-ext_cyrillic-700.woff") format("woff");
-  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
 
 .markdown-body {
   line-height: 1.6;
+  @apply leading-loose;
+
+  :is(p) {
+    @apply p-4;
+  }
+
+  :is(td) {
+    @apply p-2;
+  }
+
+  :is(table) {
+    @apply ml-4 mr-6;
+  }
+
+  :is(tr):nth-child(2n) {
+    @apply bg-dark-500 bg-opacity-10;
+  }
+
+  :is(li) {
+    @apply p-1 list-circle;
+  }
 
   :is(h1) {
     font-size: 3em;
     padding-bottom: 0.3em;
   }
+
+  :is(h2) {
+    font-size: 1.9em;
+    @apply p-4 leading-tight;
+  }
 }
 
 
-.markdown-body h2 {
-  font-size: 1.5em;
-  @apply py-4;
-}
-
-.markdown-body h3 {
+.markdown-body .markdown-body h3 {
   font-size: 1.2em;
   @apply py-2;
 }

@@ -1,6 +1,6 @@
 ---
 dynamic: true
-page_type: event
+page_type: events
 ---
 
 <script setup>
@@ -8,13 +8,11 @@ import { useData } from 'vitepress'
 const { params, frontmatter: f } = useData()
 </script>
 
-<a class="no-underline text-xl" href="/events/">Events</a> / {{ f?.title }}
-
 <EventDetails v-bind="f" />
 
-<EventAnnouncement v-bind="f" />
-
 <!-- @content -->
+
+<EventAnnouncement v-bind="f" />
 
 <youtube-embed v-if="f.youtube_video" :video="f.youtube_video"></youtube-embed>
 

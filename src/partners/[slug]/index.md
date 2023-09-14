@@ -1,6 +1,6 @@
 ---
 dynamic: true
-page_type: event
+page_type: partner
 ---
 
 <script setup>
