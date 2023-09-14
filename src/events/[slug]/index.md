@@ -18,7 +18,7 @@ const { params, frontmatter: f } = useData()
 
 <youtube-embed v-if="f.live_stream" :video="f.live_stream"></youtube-embed>
 
-<h2 v-if="f?.schedule.length>0">Event schedule</h2>
+<h2 v-if="f?.schedule?.length>0">Event schedule</h2>
 
 <EventSchedule :schedule="f?.schedule" />
 
