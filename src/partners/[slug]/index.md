@@ -1,6 +1,6 @@
 ---
 dynamic: true
-page_type: partner
+page_type: partners
 ---
 
 <script setup>
@@ -8,8 +8,6 @@ import { useData } from 'vitepress'
 import { computed } from 'vue'
 const { params, frontmatter: f } = useData()
 </script>
-
-<a class="no-underline" href="/partners/">Partners</a> / {{ f?.title }}
 
 <youtube-embed v-if="f?.youtube_video" :video="f.youtube_video"></youtube-embed>
 
