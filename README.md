@@ -1,2 +1,5 @@
-# academy.chromatone.center
-International community center for visual music practicitioners acquaintance, coordination and collaboration
+# Chromatone Academy
+
+Vitepress + Directus community platform
+
+https://academy.chromatone.center

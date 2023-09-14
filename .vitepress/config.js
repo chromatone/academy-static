@@ -1,0 +1,144 @@
+import { defineConfig } from "vitepress";
+import Unocss from "unocss/vite";
+import {
+  transformerDirectives,
+  presetIcons,
+  presetUno,
+  extractorSplit,
+} from "unocss";
+import extractorPug from "@unocss/extractor-pug";
+import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const meta = {
+  title: "Chromatone Academy",
+  description: "Visual Musicians Community Center",
+  site: "academy.chromatone.center",
+  url: "https://academy.chromatone.center/",
+  repo: "https://github.com/chromatone/academy.chromatone.center",
+  locale: "en",
+  icon: "logo.svg",
+  logo: "logo.svg",
+  image: "front.png",
+  color: '#cccccc',
+  twitter: "davay42",
+  author: "davay42",
+  tags: "Chromatone, visual music language, academy, music theory laboratory, community center, projects, events, tutors, students, partners, music education, music theory simplified, colorful notes practice together",
+  umamiId: "b6e6f7c9-19cd-4e1d-b507-56b3900e2baa",
+  umamiScript: "https://stats.chromatone.center/script.js"
+};
+
+export default defineConfig({
+  srcDir: 'src',
+  outDir: 'dist',
+  title: meta.title,
+  description: meta.description,
+  lastUpdated: false,
+  titleTemplate: 'Chromatone Academy',
+  lang: "en-US",
+  cleanUrls: true,
+  sitemap: {
+    hostname: 'https://academy.chromatone.center'
+  },
+  themeConfig: {
+    logo: meta.logo,
+    lastUpdated: true,
+    socialLinks: [
+      { icon: "github", link: "https://github.com/chromatone/academy.chromatone.center" },
+    ],
+    nav: [
+      { text: 'Chromatone', link: 'https://chromatone.center' },
+      { text: 'Cart', link: '/cart/' },
+    ],
+  },
+  head: [
+    ["link", { rel: "icon", href: `/${meta.icon}` }],
+    ["meta", { name: "referrer", content: "always" }],
+    ["meta", { content: "website", property: "og:type" }],
+    ["meta", { content: "yes", name: "apple-mobile-web-app-capable" }],
+    ["meta", { content: "yes", name: "mobile-web-app-capable" }],
+    ["meta", { content: "Synths online", name: "apple-mobile-web-app-title" }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:site', content: `@${meta.author}` }],
+    ['meta', { name: 'twitter:creator', content: `@${meta.author}` }],
+    ["meta", { name: "theme-color", content: meta.color }],
+    ["meta", { name: "keywords", content: meta?.tags }],
+    ["meta", { name: "author", content: meta?.author }],
+    ["link", { rel: "icon", type: "image/svg+xml", href: meta.url + meta.icon }]
+  ],
+  transformPageData(pageData) {
+    if (pageData.frontmatter?.dynamic) {
+      pageData.title = pageData.params?.title
+      pageData.description = pageData.params?.description
+      pageData.frontmatter = { ...pageData.frontmatter, ...pageData.params }
+    }
+  },
+  transformHead({ pageData }) {
+    const url = pageData.relativePath.split('index.md')[0]
+    let image = meta.image
+    if (pageData.frontmatter.dynamic) {
+      image = pageData.frontmatter?.cover
+    }
+    return [
+      process.env.NODE_ENV === "production" ? ["script", { async: true, defer: true, "data-website-id": meta.umamiId, src: meta.umamiScript }] : null,
+      ['meta', { property: 'og:title', content: pageData.title + ' | ' + meta.title }],
+      ['meta', { property: 'og:description', content: pageData.description }],
+      ['meta', { property: 'og:url', content: meta.url + url }],
+      ['meta', { property: 'og:image', content: image }],
+      ['meta', { name: 'twitter:image', content: image }],
+      ['meta', { name: 'twitter:title', content: pageData.title + ' | ' + meta.title }],
+      ['meta', { name: 'twitter:description', content: pageData.description }],
+    ]
+  },
+  vite: {
+    resolve: {
+      alias: {
+        "#/": path.resolve(dirname, "../"),
+      },
+    },
+    plugins: [
+      AutoImport({
+        include: [
+          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+          /\.vue$/, /\.vue\?vue/, // .vue
+          /\.md$/, // .md
+        ],
+        imports: [
+          // presets
+          'vue',
+          'vitepress'
+        ],
+        dirs: [
+          './composables'
+        ]
+      }),
+      Components({
+        dirs: ['../components'],
+        extensions: ['vue'],
+        directoryAsNamespace: true,
+        collapseSamePrefixes: true,
+        globalNamespaces: ['global'],
+        include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+        exclude: [/node_modules/, /\.git/],
+
+      }),
+      Unocss({
+        transformers: [transformerDirectives()],
+        presets: [
+          presetIcons({
+            cdn: 'https://esm.sh/',
+            scale: 1.2,
+            extraProperties: {
+              "vertical-align": "middle",
+            },
+          }),
+          presetUno(),
+        ],
+        extractors: [extractorSplit, extractorPug()],
+      }),
+    ],
+  }
+});
