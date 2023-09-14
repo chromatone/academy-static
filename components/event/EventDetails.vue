@@ -38,7 +38,7 @@ const weekDay = useDateFormat(props.date, 'dddd')
       .p-0.font-bold(v-for="d in formattedDate.split(' ')" :key="d") {{ d }}
       .p-0 {{ year }}
 
-    a.flex.items-center.gap-2.no-underline.font-normal(:href="`/academy/partners/${place?.slug}/`" v-if="place")
+    a.flex.items-center.gap-2.no-underline.font-normal(:href="`/partners/${place?.slug}/`" v-if="place")
       .i-la-map-marker
       .p-0.font-bold {{ place?.title }},
       .p-0 {{ place?.city }},

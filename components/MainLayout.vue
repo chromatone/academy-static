@@ -9,7 +9,7 @@ const route = useRoute()
 </script>
 
 <template lang="pug">
-.flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site.items-center.gap-8.px-4
+.flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site.gap-8.px-4
   .fixed.top-0.z-20.flex.w-full
     .p-2.absolute.top-2.right-2.cursor-pointer(@click="isDark = !isDark")
       .i-la-sun(v-if="!isDark")
@@ -17,15 +17,15 @@ const route = useRoute()
     a.p-2.flex.items-center.gap-2(href="https://chromatone.center" target="_blank") 
       .i-la-arrow-left.mt-1
       .p-0 chromatone.center
-
-  a.flex.flex-col.gap-4.mt-16(href="/")
-    img.w-30(src="/logo.svg")
-  .flex.flex-col.markdown-body.max-w-150
-    .text-4xl.mb-6 {{ f.title }}
-    transition(name="fade")
-      content(:key="route.path")
-  a.flex.flex-col.gap-4.items-center.my-6(href="/")
-    img.w-10(src="/logo.svg")
+  .max-w-150.mx-auto
+    a.flex.flex-col.gap-4.mt-16(href="/")
+      img.w-30(src="/logo.svg")
+    .flex.flex-col.markdown-body.max-w-150
+      .text-4xl.mb-6 {{ f.title }}
+      transition(name="fade")
+        content(:key="route.path")
+    a.flex.flex-col.gap-4.items-center.my-6(href="/")
+      img.w-10(src="/logo.svg")
 
   
 </template>
