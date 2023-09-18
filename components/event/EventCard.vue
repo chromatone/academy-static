@@ -12,6 +12,7 @@ const props = defineProps({
   slug: { type: String, default: '' },
   youtube_video: { type: String, default: '' },
   date: { type: String, default: '' },
+  place: { type: Object, default: () => ({}) },
 })
 
 const formatted = useDateFormat(() => props?.date, 'DD MMMM YYYY (dddd)')
@@ -29,8 +30,8 @@ a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dar
     .text-sm.-mx-1
       span.bg-light-900.dark-bg-dark-600.px-1.py-1.rounded {{ project?.title }} 
     .text-2xl.font-bold.flex.items-center.gap-2 {{ title }}
-    .text-lg {{ formatted }}
-
+    .text-lg {{ formatted }} @ 
+      a(:href="`/partners/${place?.slug}/`") {{ place?.title }}
     .flex-1 
     .text-md {{ description }}
     slot

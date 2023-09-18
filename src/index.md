@@ -19,7 +19,7 @@ const upcoming = computed(()=>data.events.filter(ev=>ev.date>today.value))
 <EventCard
 v-for="event in upcoming" :key="event"
 v-bind="event"
- >{{event.date > '2023-09-01'}}</EventCard>
+ ></EventCard>
 </div>
 
 ## Where are we going

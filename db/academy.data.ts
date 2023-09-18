@@ -8,7 +8,7 @@ export default {
         fields: [
           '*',
           {
-            place: ['title'],
+            place: ['title', 'slug'],
             project: ['title', 'slug'],
           },
         ]
