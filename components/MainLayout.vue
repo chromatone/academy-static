@@ -27,9 +27,7 @@ const route = useRoute()
           a.text-md.opacity-40(:href="`/${f?.page_type}/`") {{ f.page_type }}
         .text-3xl {{ f.title }}
     .flex.flex-col.markdown-body.max-w-150
-
-
-      content(:key="route.path")
+      content
     a.flex.flex-col.gap-4.items-center.my-6(href="/")
       img.w-10(src="/logo.svg")
 
