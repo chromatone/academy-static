@@ -34,7 +34,6 @@ a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dar
       a(:href="`/partners/${place?.slug}/`") {{ place?.title }}
     .flex-1 
     .text-md {{ description }}
-    slot
 
 </template>
 
