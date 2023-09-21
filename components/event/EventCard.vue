@@ -19,22 +19,28 @@ const formatted = useDateFormat(() => props?.date, 'DD MMMM YYYY (dddd)')
 
 </script>
 
-<template lang='pug'>
-a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.max-w-150.no-underline( :href="`/events/${slug}/`" style="padding-bottom:0;padding-left:0; padding-right:0; flex: 1 1 auto" )
-  .p-0.min-w-50.relative.flex.items-start.justify-center(style="flex: 1 0 ")
-    .text-120px.mt-6.flex.gap-2.absolute.p-2.opacity-80.invert.i-ic-round-play-circle( v-if="youtube_video")
-    img(
-      style="margin:0"
-      :src="`https://db.chromatone.center/assets/${props.poster || props.cover}?fit=cover&width=600&height=600&format=webp`")
-  .flex.flex-col.p-4.gap-2(style="flex: 1 1 200px")
-    .text-sm.-mx-1
-      span.bg-light-900.dark-bg-dark-600.px-1.py-1.rounded {{ project?.title }} 
-    .text-2xl.font-bold.flex.items-center.gap-2 {{ title }}
-    .text-lg {{ formatted }} @ 
-      a(:href="`/partners/${place?.slug}/`") {{ place?.title }}
-    .flex-1 
-    .text-md {{ description }}
-
+<template >
+  <div style="padding-bottom:0;padding-left:0; padding-right:0; flex: 1 1 auto">
+    <a class="overflow-hidden flex flex-wrap shadow-lg hover-shadow-xl transition flex-1 dark-bg-dark-300 max-w-150 no-underline"
+      :href="`/events/${slug}/`">
+      <div class="p-0 min-w-50 relative flex items-start justify-center" style="flex: 1 0 ">
+        <div class="text-120px mt-6 flex gap-2 absolute p-2 opacity-80 invert i-ic-round-play-circle"
+          v-if="youtube_video">
+        </div><img style="margin:0"
+          :src="`https://db.chromatone.center/assets/${props.poster || props.cover}?fit=cover&amp;width=600&amp;height=600&amp;format=webp`" />
+      </div>
+      <div class="flex flex-col p-4 gap-2" style="flex: 1 1 200px">
+        <div class="text-sm -mx-1"><span class="bg-light-900 dark-bg-dark-600 px-1 py-1 rounded">{{ project?.title }}
+          </span></div>
+        <div class="text-2xl font-bold flex items-center gap-2">{{ title }}</div>
+        <div class="text-lg">{{ formatted }} <a :href="`/partners/${place?.slug}/`" v-if="place?.slug">@ {{ place?.title
+        }}</a>
+        </div>
+        <div class="flex-1"> </div>
+        <div class="text-md">{{ description }}</div>
+      </div>
+    </a>
+  </div>
 </template>
 
 <style scoped>

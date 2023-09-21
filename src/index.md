@@ -16,10 +16,8 @@ const upcoming = computed(()=>data.events.filter(ev=>ev.date>today.value))
 </script>
 
 <div class="m-4 flex flex-col gap-8" >
-<EventCard
-v-for="event in upcoming" :key="event"
-v-bind="event"
- />
+<EventCard v-for="event in upcoming" :key="event" v-bind="event">
+ </EventCard>
 </div>
 
 ## Where are we going
