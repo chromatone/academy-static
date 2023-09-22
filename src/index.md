@@ -12,7 +12,7 @@ import { useDateFormat, useNow } from '@vueuse/core'
 import { data } from '../db/academy.data'
 
 const today = useDateFormat(useNow(), 'YYYY-MM-DD')
-const upcoming = computed(()=>data.events.filter(ev=>ev.date>today.value))
+const upcoming = computed(()=>data.events.filter(ev=>ev.date>=today.value))
 </script>
 
 <div class="m-4 flex flex-col gap-8" >
