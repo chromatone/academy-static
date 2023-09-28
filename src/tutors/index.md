@@ -7,7 +7,7 @@ buttons:
   - url: https://airtable.com/shrFbtdCJR07jDsaM
     text: Book a music theory lesson now
 tutors:
-  - avatar: /img/starov.jpg
+  - avatar: /starov.jpg
     name: Denis Starov
     pos: Author of the Chromatone system
     place: Based in Phuket, Thailand
