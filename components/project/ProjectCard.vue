@@ -4,11 +4,11 @@ import { computed } from 'vue';
 
 const props = defineProps({
   title: { type: String, default: '' },
+  slug: { type: String, default: '' },
   description: { type: String, default: '' },
   url: { type: String, default: '' },
   cover: { type: String, default: '' },
   poster: { type: String, default: '' },
-  slug: { type: String, default: '' },
   youtube_video: { type: String, default: '' },
   start_date: { type: String, default: '' },
   end_date: { type: String, default: '' },
@@ -27,7 +27,7 @@ a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dar
     .text-100px.flex.gap-2.absolute.top-11.left-10.p-2.opacity-80.i-ic-round-play-circle(v-if="youtube_video")
     img(
       style="margin:0"
-      :src="`https://db.chromatone.center/assets/${props.cover || props.poster}?fit=cover&width=600&height=600&format=webp`")
+      :src="`/projects/${slug}.webp`")
   .flex.flex-col.p-4.gap-2(style="flex: 1 1 200px")
     .text-sm {{ from }} – {{ to }}
     .text-2xl.font-bold.flex.items-center.gap-2 {{ title }}

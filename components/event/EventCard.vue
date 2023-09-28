@@ -26,8 +26,7 @@ const formatted = useDateFormat(() => props?.date, 'DD MMMM YYYY (dddd)')
       <div class="p-0 min-w-50 relative flex items-start justify-center" style="flex: 1 0 ">
         <div class="text-120px mt-6 flex gap-2 absolute p-2 opacity-80 invert i-ic-round-play-circle"
           v-if="youtube_video">
-        </div><img style="margin:0"
-          :src="`https://db.chromatone.center/assets/${props.poster || props.cover}?fit=cover&amp;width=600&amp;height=600&amp;format=webp`" />
+        </div><img style="margin:0" :src="`/events/${slug}.webp`" />
       </div>
       <div class="flex flex-col p-4 gap-2" style="flex: 1 1 200px">
         <div class="text-sm -mx-1"><span class="bg-light-900 dark-bg-dark-600 px-1 py-1 rounded">{{ project?.title }}
