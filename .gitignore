@@ -5,6 +5,7 @@ node_modules/
 .vitepress/.temp
 .DS_Store
 .env
-src/public/projects/*.webp
-src/public/events/*.webp
+src/public/projects/**/*.webp
+src/public/events/**/*.webp
+src/public/images
 dist

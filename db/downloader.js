@@ -5,7 +5,12 @@ import { fileURLToPath } from "node:url";
 import fs from 'node:fs'
 
 
-export async function downloadCovers(records, folder = '', query = 'quality=70&width=1000&format=webp') {
+export async function downloadCovers({
+  records = [],
+  field = 'cover',
+  folder = '',
+  query = 'quality=70&width=1000&format=webp'
+} = options) {
 
   const dirname = path.dirname(fileURLToPath(import.meta.url));
   let dest = path.resolve(dirname, '../src/public/', folder)
@@ -15,19 +20,19 @@ export async function downloadCovers(records, folder = '', query = 'quality=70&w
   const urls = []
 
   for (let r of records) {
-    if (!r?.cover) continue
+    if (!r?.[field]) continue
     let filePath = path.resolve(dest, `${r.slug}.webp`)
     if (fs.existsSync(filePath)) continue
-    let url = `https://db.chromatone.center/assets/${r.cover}?${query}&download`
+    let url = `https://db.chromatone.center/assets/${r[field]}?${query}&download`
     urls.push({ url, slug: r.slug, dest: filePath })
   }
 
   const chunkSize = 5;
   for (let i = 0; i < urls.length; i += chunkSize) {
     const chunk = urls.slice(i, i + chunkSize);
-    await Promise.all(chunk.map(cover => {
-      console.log('downloading file:', cover.slug + '.webp')
-      return download.image(cover)
+    await Promise.all(chunk.map(rec => {
+      console.log('downloading file:', rec.slug + '.webp')
+      return download.image(rec)
     }));
   }
 

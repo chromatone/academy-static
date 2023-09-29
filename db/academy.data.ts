@@ -29,8 +29,15 @@ export default {
         ]
       })
 
-    await downloadCovers(projects, 'projects')
-    await downloadCovers(events, 'events', 'fit=cover&amp;width=600&amp;height=600&amp;format=webp')
+    await downloadCovers({
+      records: projects,
+      folder: 'projects',
+    })
+    await downloadCovers({
+      records: events,
+      folder: 'events/thumb',
+      query: 'fit=cover&amp;width=600&amp;height=600&amp;format=webp'
+    })
 
     return {
       events, projects, partners
