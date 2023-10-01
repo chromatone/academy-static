@@ -14,6 +14,7 @@ const props = defineProps({
   end_date: { type: String, default: '' },
   field: { type: Array, default: [] },
   events: { type: Array, default: [] },
+  program: { type: Object, default: () => ({}) },
 })
 
 const from = useDateFormat(() => props?.start_date, 'DD MMM YYYY')
@@ -32,7 +33,7 @@ a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dar
     .text-sm {{ from }} – {{ to }}
     .text-2xl.font-bold.flex.items-center.gap-2 {{ title }}
     .flex.flex-wrap.gap-2.items-center.capitalize
-      .px-2.bg-light-800.dark-bg-dark-800.rounded(v-for="tag in field" :key="tag") {{ tag }} 
+      a.px-2.bg-light-800.dark-bg-dark-800.rounded(v-if="program?.slug" :href="`/programs/${program.slug}/`") {{ program.title }} 
       .px-2.bg-light-500.dark-bg-dark-500.rounded(v-if="events.length>0") {{ events.length }} event{{ (events.length % 10 === 1 && events.length !== 11) ? '' : 's' }}
     .text-md.leading-normal {{ description }}
 

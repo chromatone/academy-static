@@ -5,6 +5,11 @@ export default {
   async load() {
     const events = await useItems('events',
       {
+        filter: {
+          status: {
+            _eq: 'published'
+          }
+        },
         sort: ['-date'],
         fields: [
           '*',
@@ -17,13 +22,43 @@ export default {
 
     const projects = await useItems('projects',
       {
+        filter: {
+          status: {
+            _eq: 'published'
+          }
+        },
         fields: [
-          '*'
+          '*',
+          {
+            place: ['title', 'slug'],
+            program: ['title', 'slug'],
+          },
+        ]
+      })
+
+    const programs = await useItems('programs',
+      {
+        filter: {
+          status: {
+            _eq: 'published'
+          }
+        },
+        sort: ['sort'],
+        fields: [
+          '*',
+          {
+            projects: ['title', 'slug'],
+          },
         ]
       })
 
     const partners = await useItems('partners',
       {
+        filter: {
+          status: {
+            _eq: 'published'
+          }
+        },
         fields: [
           '*'
         ]
@@ -33,6 +68,7 @@ export default {
       records: projects,
       folder: 'projects',
     })
+
     await downloadCovers({
       records: events,
       folder: 'events/thumb',
@@ -40,7 +76,7 @@ export default {
     })
 
     return {
-      events, projects, partners
+      events, projects, partners, programs
     }
   }
 }

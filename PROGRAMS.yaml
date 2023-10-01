@@ -1,0 +1,29 @@
+programs:
+  - title: Community Collaborations
+    description: A program centered around community meetups and collaborations, including the 'Music Geeks Meetups'.
+    projects:
+      - music-geeks-meetups
+  - title: Web Applications and Development
+    description: This program focuses on the development and use of web applications like 'TouchMe Experience', 'Web development', and 'Web synths collection'.
+    projects:
+      - touch-me
+      - web-dev
+      - web-synths
+  - title: Visual Music Creation
+    description: A program that encourages the creation of visual music content. Includes projects like 'drops' and 'Visual Music Lab'.
+    projects:
+      - tsoop-drops
+      - visual-music-lab
+  - title: Music and Video Production
+    description: This program centers around music and video production, with projects like 'Open Source Support'.
+    projects:
+      - open-source-support
+  - title: Educational Initiatives
+    description: A program that focuses on educational initiatives, such as the 'Video course [ru]' and 'Public talks [ru]'.
+    projects:
+      - skillbox
+      - talks
+  - title: Art and Science Collaborations
+    description: This program encourages collaboration between art and science, with projects like 'Modern art and science'.
+    projects:
+      - art-science

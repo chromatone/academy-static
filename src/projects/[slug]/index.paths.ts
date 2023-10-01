@@ -7,9 +7,13 @@ export default {
       fields: [
         '*',
         {
+          program: ['*'],
           events: [
             '*',
-            { project: ['title'] }
+            {
+              project: ['title'],
+              place: ['title', 'slug']
+            }
           ],
           partners: ['partners_id', { partners_id: ['title', 'logo', 'slug'] }]
         }
