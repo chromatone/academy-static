@@ -3,30 +3,32 @@ import '@unocss/reset/tailwind.css'
 import 'uno.css'
 
 
-const { isDark, frontmatter: f } = useData()
+const { isDark, frontmatter: f, params } = useData()
 
 const route = useRoute()
 </script>
 
 <template lang="pug">
-.flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site
-  .sticky.top-0.z-20.flex.w-full.items-center.gap-2.px-4.py-2
-
+.flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site(
+  )
+  .fixed.top-0.z-20.flex.w-full.items-center.gap-2.px-4.py-2
     a.opacity-60.hover-opacity-100.transition(href="/") academy
     a.p-0.opacity-40.hover-opacity-100.transition(href="https://chromatone.center") chromatone.center
     .flex-auto
     .cursor-pointer.mt-2px.opacity-30.hover-opacity-80(@click="isDark = !isDark")
       .i-la-sun(v-if="!isDark")
       .i-carbon-moon(v-else)
-  .max-w-150.mx-auto
-    .flex.items-center.gap-4.mt-12.mb-10
+  .max-w-160.mx-auto.bg-top.bg-contain.bg-no-repeat.z-100.relative(
+    )
+    .flex.items-center.gap-4.mt-22.mb-10
       img.w-20.sm-w-30.ml-4(src="/logo.svg")
       .flex.flex-col.gap-2
         .flex.flex-wrap.items-end.gap-2.capitalize
           a.text-4xl.font-bold(href="/") Chromatone
           a.text-md.opacity-40(:href="`/${f?.page_type}/`") {{ f.page_type }}
         .text-3xl {{ f.title }}
-    .flex.flex-col.markdown-body.max-w-150
+        .text-sm.leading-normal {{ f.description }}
+    .flex.flex-col.markdown-body.max-w-200
       content
     a.flex.flex-col.gap-4.items-center.my-6(href="/")
       img.w-10(src="/logo.svg")

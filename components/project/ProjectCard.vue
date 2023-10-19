@@ -1,6 +1,10 @@
 <script setup>
 import { useDateFormat } from '@vueuse/core'
 import { computed } from 'vue';
+import { data } from '../../db/academy.data'
+import { useData } from 'vitepress';
+
+const { isDark } = useData()
 
 const props = defineProps({
   title: { type: String, default: '' },
@@ -15,6 +19,7 @@ const props = defineProps({
   field: { type: Array, default: [] },
   events: { type: Array, default: [] },
   program: { type: Object, default: () => ({}) },
+  sort: { type: Number, default: '' },
 })
 
 const from = useDateFormat(() => props?.start_date, 'DD MMM YYYY')
@@ -23,12 +28,15 @@ const to = props?.end_date ? useDateFormat(() => props?.end_date, 'DD MMM YYYY',
 </script>
 
 <template lang='pug'>
-a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.max-w-150.no-underline( :href="`/projects/${slug}/`" style="padding-bottom:0;padding-left:0; padding-right:0; flex: 1 1 auto" )
-  .p-0.min-w-50.relative(style="flex: 1 1 ")
+a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.max-w-65ch.no-underline( :href="`/projects/${slug}/`" 
+  :style="{}"
+  style="padding-bottom:0;padding-left:0; padding-right:0; flex: 1 1 auto" 
+  )
+  .p-0.min-w-50.relative.bg-cover.bg-center.b-l-20(style="flex: 1 1 "
+    :style="{backgroundImage:`url(/covers/${slug}.webp)`, borderColor:`oklch(${isDark ? 60 : 92}% .07 ${(sort-1)*360/data?.projects.length})`}"
+    )
     .text-100px.flex.gap-2.absolute.top-11.left-10.p-2.opacity-80.i-ic-round-play-circle(v-if="youtube_video")
-    img(
-      style="margin:0"
-      :src="`/projects/${slug}.webp`")
+
   .flex.flex-col.p-4.gap-2(style="flex: 1 1 200px")
     .text-sm {{ from }} – {{ to }}
     .text-2xl.font-bold.flex.items-center.gap-2 {{ title }}

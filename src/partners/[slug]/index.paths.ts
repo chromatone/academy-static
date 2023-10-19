@@ -10,7 +10,7 @@ export default {
           projects: ['*', { projects_id: ['*'] }],
           events: [
             '*',
-            { project: ['title'] }
+            { project: ['title'], program: ['title'], place: ['title'] }
           ]
         }
       ],

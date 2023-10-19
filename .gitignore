@@ -8,4 +8,7 @@ node_modules/
 src/public/projects/**/*.webp
 src/public/events/**/*.webp
 src/public/images
+src/public/covers
+src/public/logos
+src/public/posters/
 dist

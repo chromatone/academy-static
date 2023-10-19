@@ -65,14 +65,35 @@ export default {
       })
 
     await downloadCovers({
+      records: programs,
+      folder: 'covers',
+      query: 'fit=cover&amp;width=600&amp;height=600&amp;format=webp'
+    })
+
+    await downloadCovers({
       records: projects,
-      folder: 'projects',
+      folder: 'covers',
+      query: 'fit=cover&amp;width=600&amp;height=600&amp;format=webp'
     })
 
     await downloadCovers({
       records: events,
-      folder: 'events/thumb',
+      folder: 'covers',
       query: 'fit=cover&amp;width=600&amp;height=600&amp;format=webp'
+    })
+
+    await downloadCovers({
+      records: events,
+      field: 'poster',
+      folder: 'posters',
+      query: 'fit=inside&amp;width=800&amp;height=800&amp;format=webp'
+    })
+
+    await downloadCovers({
+      records: partners,
+      field: 'logo',
+      folder: 'logos',
+      query: 'fit=inside&amp;width=1000&amp;height=1000&amp;format=webp'
     })
 
     return {

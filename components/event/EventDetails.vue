@@ -12,6 +12,7 @@ const props = defineProps({
   duration: { type: String, default: '' },
   place: { type: Object, default: () => ({}) },
   url: { type: String, default: '' },
+  slug: { type: String, default: '' }
 })
 
 const formattedDate = useDateFormat(props.date, 'DD MMMM')
@@ -23,7 +24,7 @@ const weekDay = useDateFormat(props.date, 'dddd')
 
 <template lang='pug'>
 .flex.flex-col.gap-8.text-lg.mx-4.p-4.bg-light-100.dark-bg-dark-300.max-w-150.rounded-xl.shadow
-  img(v-if="poster" style="margin:0;" :src=" `https://db.chromatone.center/assets/${poster}?format=webp&width=900&fit=cover`")
+  img(v-if="poster" style="margin:0;" :src="`/covers/${slug}.webp`")
   .flex.flex-col.gap-2
     .flex.flex-col.gap-2 
       .text-3xl.font-bold {{ title }}

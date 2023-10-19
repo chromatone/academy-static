@@ -32,4 +32,4 @@ const events = computed(()=>[...f.value?.events].sort((a,b)=>(new Date(a.date)).
 
 ## Program
 
-<ProgramCard v-bind="f?.program" />
+<ProgramCard class="m-4" v-bind="f?.program" />

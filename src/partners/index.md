@@ -9,6 +9,6 @@ cover: hannah-busing.jpg
 import { data } from '../../db/academy.data'
 </script>
 
-<div class="flex flex-wrap gap-2 max-w-150">
+<div class="flex m-4 flex-wrap gap-4 max-w-150">
 <PartnerCard v-for="partner in data.partners" v-bind="partner" > {{partner}}</PartnerCard>
 </div>

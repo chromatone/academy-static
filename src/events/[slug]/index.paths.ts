@@ -9,7 +9,8 @@ export default {
         {
           media: ['*', { directus_files_id: ['*'] }],
           place: ['title', 'city', 'country', 'slug', { logo: ['id'] }],
-          project: ['*']
+          project: ['*'],
+          program: ['*']
         }
       ]
     })
