@@ -1,7 +1,6 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
   workflow_dispatch:
   repository_dispatch:
     types:
@@ -18,10 +17,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          version: 8
-          run_install: true
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Build project
         run: pnpm run build
