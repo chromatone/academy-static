@@ -32,7 +32,7 @@ const meta = {
 };
 
 export default defineConfig({
-  srcDir: 'src',
+  srcDir: 'content',
   outDir: 'dist',
   title: meta.title,
   description: meta.description,

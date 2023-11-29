@@ -13,7 +13,7 @@ export async function downloadCovers({
 } = options) {
 
   const dirname = path.dirname(fileURLToPath(import.meta.url));
-  let dest = path.resolve(dirname, '../src/public/', folder)
+  let dest = path.resolve(dirname, '../content/public/', folder)
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
   }

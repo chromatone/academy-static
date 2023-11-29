@@ -5,10 +5,10 @@ node_modules/
 .vitepress/.temp
 .DS_Store
 .env
-src/public/projects/**/*.webp
-src/public/events/**/*.webp
-src/public/images
-src/public/covers
-src/public/logos
-src/public/posters/
+content/public/projects/**/*.webp
+content/public/events/**/*.webp
+content/public/images
+content/public/covers
+content/public/logos
+content/public/posters/
 dist
