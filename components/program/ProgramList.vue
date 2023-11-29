@@ -7,6 +7,8 @@ const props = defineProps({
 </script>
 
 <template lang="pug">
-.flex.flex-wrap.max-w-55ch.mx-4.sm-mx-8.gap-8
+.flex.flex-wrap.max-w-55ch.gap-12
+  slot
   ProgramCard(v-for="program in programs", :key="program" v-bind="program")
+
 </template>

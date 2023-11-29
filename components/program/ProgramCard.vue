@@ -28,6 +28,9 @@ const props = defineProps({
 a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.b-l-20.max-w-150.no-underline( :href="`/programs/${slug}/`" style="padding-bottom:0;padding-left:0; padding-right:0; flex: 1 1 auto" 
 :style="{borderColor:`oklch(${isDark ? 60 : 92}% .07 ${(sort-1)*360/data?.programs.length})`}"
 )
+  .p-0.min-w-50.h-70.relative.bg-cover.bg-center(style="flex: 1 1 "
+    :style="{backgroundImage:`url(/covers/${slug}.webp)`}"
+    )
   .flex.flex-col.p-4.gap-4.w-full
     .flex.items-center.gap-2 
       .text-2xl.font-bold {{ title }}
