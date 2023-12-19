@@ -12,13 +12,6 @@ h2(v-if="upcoming.length > 0") Upcoming events
 .m-4.flex.flex-col.gap-8
   EventCard(v-for="event in upcoming", :key="event", v-bind="event").
 
-.flex.flex-wrap.gap-4.p-4.links.max-w-150.items-center.justify-center
-  a(href="/programs/") Programs
-  a(href="/projects/") Projects
-  a(href="/events/") Events
-  a(href="/tutors/") Tutors
-  a(href="/partners/") Partners
-  a(href="/about/") About
 
 </template>
 
