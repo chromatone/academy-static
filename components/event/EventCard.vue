@@ -20,7 +20,7 @@ const formatted = useDateFormat(() => props?.date, 'DD MMMM YYYY (dddd)')
 </script>
 
 <template lang="pug" >
-a.opacity-80.hover-opacity-100.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.no-underline(:href="`/events/${slug}/`")
+a.opacity-80.hover-opacity-100.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.no-underline.border-1.rounded.overflow-hidden(:href="`/events/${slug}/`")
   .p-0.min-w-50.relative.flex.items-start.justify-center.bg-center.bg-cover.min-h-50(
     :style="{ backgroundImage: `url(/covers/${slug}.webp)` }",
     style="flex: 1 1 100px"

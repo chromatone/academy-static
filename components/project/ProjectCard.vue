@@ -44,7 +44,7 @@ a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dar
       a.px-2.bg-light-800.dark-bg-dark-800.rounded(v-if="program?.slug" :href="`/programs/${program.slug}/`") {{ program.title }} 
       .px-2.bg-light-500.dark-bg-dark-500.rounded(v-if="events.length>0") {{ events.length }} event{{ (events.length % 10 === 1 && events.length !== 11) ? '' : 's' }}
     .text-md.leading-normal {{ description }}
-
+    slot
 
 </template>
 

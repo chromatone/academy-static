@@ -9,7 +9,7 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-a.p-4.flex.items-center.no-underline.justify-center.bg-light-700(
+a.p-4.flex.items-center.no-underline.justify-center.bg-light-900.bg-opacity-70.hover-bg-opacity-100(
   style="flex:1 1 160px;" 
   :title="title"
   :href="`/partners/${slug}/`")

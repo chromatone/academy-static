@@ -6,7 +6,7 @@ const route = useRoute()
 </script>
 
 <template lang='pug'>
-.flex.flex-wrap.gap-0.links.items-center.justify-center.bg-light-900.dark-bg-dark-800.bg-opacity-80.dark-bg-opacity-80.backdrop-blur-6
+.flex.flex-wrap.gap-0.links.items-center.justify-center.bg-light-900.dark-bg-dark-800.bg-opacity-80.dark-bg-opacity-60.backdrop-blur-6.pb-2
   a.flex.items-center.gap-2(
     href="/"
     style="flex:1 1 280px"
@@ -26,8 +26,8 @@ const route = useRoute()
 
 <style scoped lang="postcss">
 a {
-  @apply flex items-center flex-auto p-4 text-xl bg-light-700 transition dark-bg-dark-500 hover-dark-bg-dark-200 text-center;
-  flex: 1 1 140px;
+  @apply flex justify-center items-center flex-auto p-4 text-xl hover-bg-light-700 hover-dark-bg-dark-800 transition text-center;
+  flex: 1 1 80px;
 
   &.active {
     @apply font-bold

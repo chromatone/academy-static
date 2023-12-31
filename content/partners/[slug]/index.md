@@ -14,15 +14,3 @@ const { params, frontmatter: f } = useData()
 <PartnerDetails v-bind="f" />
 
 <!-- @content -->
-
-<h2 v-if="f.projects.length>0"> Projects: {{ f.projects.length }} </h2>
-
-<div class="flex flex-col gap-4 mx-4">
-<ProjectCard v-for="project in f?.projects" :key="project" v-bind="project?.projects_id"  >{{project}}</ProjectCard>
-</div>
-
-<h2 v-if="f.events.length>0">Events: {{ f.events.length }} </h2>
-
-<div class="m-4 flex flex-col gap-8">
-  <EventCard v-for="event in f.events" :key="event.id" v-bind="event" />
-</div>

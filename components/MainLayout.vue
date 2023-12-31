@@ -40,31 +40,42 @@ const route = useRoute()
         .text-3xl {{ f.title }}
         .text-sm.leading-normal {{ f.description }}
         a(:href="f?.url" v-if="f?.url" target="_blank") {{ f.url }}
-
-        EventDetails(v-bind="f" v-if="f?.page_type == 'events'")
+        EventDetails(
+          v-bind="f" v-if="f?.page_type == 'events'")
 
     .flex.flex-col.markdown-body.max-w-60ch.bg-light-200.dark-bg-dark-300
       content
 
+  .flex.flex-col.gap-2(v-if="f?.events?.length>0 || f?.list?.events") 
+    .text-3xl.ml-4.p-4 Events
+    .flex.flex-wrap.gap-4.z-100.mx-4
+      EventCard.max-w-150(
+        style="flex:1 1 250px"
+        v-for="event in [...(f?.events || data?.events)].sort((a,b)=>(new Date(a.date)).getTime()>(new Date(b.date)).getTime() ? -1:1)", :key="event" v-bind="event")
+
+  .flex.m-4.flex-wrap.gap-4.z-20(v-if="f?.list?.partners")
+    partner-card(v-for="partner in data.partners", v-bind="partner") {{partner}}
+
+
   .flex.flex-col.gap-2(v-if="f?.projects || f?.list?.projects")
-    .text-3xl.ml-4.p-4 Projects
-    .flex.flex-wrap.gap-4.mx-4()
-
-      ProjectCard(
+    .text-3xl.ml-4.p-4 Projects 
+    .flex.flex-wrap.gap-4.mx-4() 
+      ProjectCard.max-w-150(
         style="flex: 1 1 280px"
-        v-for="project in [...(f?.projects || data?.projects)]?.sort((a,b)=> a?.sort>b?.sort ? 1 : -1)", :key="project" v-bind="project")
+        v-for="project in [...(f?.projects || data?.projects)]?.sort((a,b)=> a?.sort>b?.sort ? 1 : -1)", :key="project" v-bind="project?.projects_id ? project.projects_id : project") 
 
-  .flex.flex-col.gap-2(v-if="f?.list?.events")
-    EventList(:events="data?.events" :projects="data?.projects")
+
 
   .flex.flex-col.gap-2(v-if="f?.list?.programs")
     .text-3xl.ml-4.p-4 Our educational programs
     .flex.flex-wrap.gap-6.mx-2.my-8
-      ProgramCard(v-for="program in data?.programs", :key="program" v-bind="program")
+      ProgramCard(
+        v-for="program in data?.programs", :key="program" v-bind="program")
 
   //- a.flex.flex-wrap.gap-4.items-center.m-6(href="/")
     img.w-10(src="/logo.svg")
   MainNav.z-100.mt-8
+
 </template>
 
 <style lang="postcss">
