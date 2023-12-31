@@ -28,11 +28,11 @@ const to = props?.end_date ? useDateFormat(() => props?.end_date, 'DD MMM YYYY',
 </script>
 
 <template lang='pug'>
-a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.max-w-65ch.no-underline( :href="`/projects/${slug}/`" 
-  :style="{}"
+a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.no-underline.b-4.z-100.bg-light-100.dark-bg-dark-200( :href="`/projects/${slug}/`" 
   style="padding-bottom:0;padding-left:0; padding-right:0; flex: 1 1 auto" 
+  :style="{borderColor:`oklch(${isDark ? 60 : 92}% .07 ${(sort-1)*360/data?.projects.length})`}"
   )
-  .p-0.min-w-50.relative.bg-cover.bg-center.b-l-20(style="flex: 1 1 "
+  .p-0.min-w-50.relative.bg-cover.bg-center.min-h-60(style="flex: 1 1 300px"
     :style="{backgroundImage:`url(/covers/${slug}.webp)`, borderColor:`oklch(${isDark ? 60 : 92}% .07 ${(sort-1)*360/data?.projects.length})`}"
     )
     .text-100px.flex.gap-2.absolute.top-11.left-10.p-2.opacity-80.i-ic-round-play-circle(v-if="youtube_video")

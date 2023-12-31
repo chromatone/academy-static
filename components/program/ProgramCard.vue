@@ -25,7 +25,7 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.b-l-20.max-w-150.no-underline( :href="`/programs/${slug}/`" style="padding-bottom:0;padding-left:0; padding-right:0; flex: 1 1 auto" 
+a.z-200.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dark-bg-dark-300.b-2.max-w-150.no-underline.rounded( :href="`/programs/${slug}/`" style="padding-bottom:0;padding-left:0; padding-right:0; flex: 1 1 280px" 
 :style="{borderColor:`oklch(${isDark ? 60 : 92}% .07 ${(sort-1)*360/data?.programs.length})`}"
 )
   .p-0.min-w-50.h-70.relative.bg-cover.bg-center(style="flex: 1 1 "
@@ -37,7 +37,7 @@ a.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex-1.dar
       .flex-1
       .flex.gap-2.items-center.capitalize
         .px-2.bg-light-800.dark-bg-dark-800.rounded(v-for="tag in field" :key="tag") {{ tag }} 
-        .px-2.bg-light-500.dark-bg-dark-500.rounded(
+        .px-2.bg-light-500.dark-bg-dark-500.rounded.whitespace-nowrap(
           :style="{backgroundColor: `oklch(${isDark ? 60 : 92}% .07 ${(sort-1)*360/data?.programs.length})`}"
           v-if="projects.length>0"
           ) {{ projects.length }} project{{ (projects.length % 10 === 1 && projects.length !== 11) ? '' : 's' }}

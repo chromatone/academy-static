@@ -23,32 +23,34 @@ const weekDay = useDateFormat(props.date, 'dddd')
 </script>
 
 <template lang='pug'>
-.flex.flex-col.gap-8.text-lg.mx-4.p-4.bg-light-100.dark-bg-dark-300.max-w-150.rounded-xl.shadow
-  img(v-if="poster" style="margin:0;" :src="`/covers/${slug}.webp`")
-  .flex.flex-col.gap-2
-    .flex.flex-col.gap-2 
-      .text-3xl.font-bold {{ title }}
-      .p-0 {{ description }}
-    .flex-1.flex.gap-2.items-center 
-      .i-la-clock
-      .p-0.font-bold {{ start_time?.slice(0,-3) }} 
-      .p-0 {{ weekDay }}
-      .p-0.opacity-40 {{ duration }}
-    .flex.flex-wrap.gap-2.items-center
-      .i-la-calendar
-      .p-0.font-bold(v-for="d in formattedDate.split(' ')" :key="d") {{ d }}
-      .p-0 {{ year }}
 
-    a.flex.items-center.gap-2.no-underline.font-normal(:href="`/partners/${place?.slug}/`" v-if="place")
-      .i-la-map-marker
-      .p-0.font-bold {{ place?.title }},
-      .p-0 {{ place?.city }},
-      .p-0 {{ place?.country }}
+.flex.flex-wrap.gap-2
+  .flex.gap-2.items-center.whitespace-nowrap(
+    style="flex: 1 1 100px"
+    )
+    .i-la-clock
+    .p-0.font-bold {{ start_time?.slice(0,-3) }} 
+    .p-0 {{ weekDay }}
+    .p-0.opacity-40 {{ duration }}
+  .flex.gap-2.items-center.whitespace-nowrap(
+    style="flex: 1 1 120px"
+    )
+    .i-la-calendar
+    .p-0.font-bold(v-for="d in formattedDate.split(' ')" :key="d") {{ d }}
+    .p-0 {{ year }}
 
-  a.p-4.shadow-lg.bg-purple-800.hover-bg-purple-700.text-light-200.font-bold.rounded-lg.text-center.no-underline.cursor-pointer.text-light-900.hover-text-white(
+  a.flex.items-center.gap-2.no-underline.font-normal.whitespace-nowrap(
+    style="flex: 1 1 120px"
+    :href="`/partners/${place?.slug}/`" v-if="place")
+    .i-la-map-marker
+    .p-0.font-bold {{ place?.title }},
+    .p-0 {{ place?.city }},
+    .p-0 {{ place?.country }}
+  a.p-4.shadow.bg-purple-800.hover-bg-purple-700.text-light-200.font-bold.rounded.text-center.no-underline.cursor-pointer.text-light-900.hover-text-white(
+    :class="{'bg-dark-100/50! hover-bg-dark-400!':new Date(date) <= new Date()}"
     target="_blank"
     :href="url"
     v-if="url"
-  ) Get tickets
+  ) {{ new Date(date) >= new Date() ? 'Get tickets' : 'Past event' }}
   
 </template>

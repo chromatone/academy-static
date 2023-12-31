@@ -18,7 +18,7 @@ const events = computed(()=>[...f.value?.events].sort((a,b)=>(new Date(a.date)).
 
 <!-- <pre class="text-xs">{{ frontmatter }}</pre> -->
 
-## {{ events.length }} events
+<h2 v-if="events.length>0">{{ events.length }} events </h2>
 
 <div class="m-4 flex flex-col gap-8">
   <EventCard v-for="event in events" :key="event.id" v-bind="event" />
@@ -30,6 +30,6 @@ const events = computed(()=>[...f.value?.events].sort((a,b)=>(new Date(a.date)).
 <PartnerCard v-for="partner in f?.partners" v-bind="partner?.partners_id" ></PartnerCard>
 </div>
 
-## Program
+<h3>Project is included in the program</h3>
 
 <ProgramCard class="m-4" v-bind="f?.program" />

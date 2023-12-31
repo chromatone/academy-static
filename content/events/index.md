@@ -2,11 +2,7 @@
 title: Events
 description: Meetups, talks and performances
 date: 2023-08-22
+list:
+  events: true
 ---
 
-
-<script setup>
-import { data } from '../../db/academy.data'
-</script>
-
-<EventList :events="data?.events" :projects="data?.projects"/>
