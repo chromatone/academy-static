@@ -15,7 +15,7 @@ export default {
               place: ['title', 'slug']
             }
           ],
-          partners: ['partners_id', { partners_id: ['title', 'logo', 'slug'] }]
+          partners: ['partners_id', { partners_id: ['title', 'logo', 'slug', 'sort'] }]
         }
       ],
     })

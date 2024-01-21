@@ -14,7 +14,7 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-.flex.flex-col.gap-8.mx-4.bg-light-100.dark-bg-dark-300.max-w-150.rounded-xl.shadow
+.flex.flex-col.gap-8.mx-4.bg-light-100.dark-bg-dark-300.rounded-xl.shadow
 
   img(v-if="logo" style="margin:0;" :src=" `/logos/${slug}.webp`")
   .flex.flex-col.gap-4.p-4

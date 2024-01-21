@@ -8,6 +8,11 @@ import { data } from '../db/academy.data'
 const { isDark, frontmatter: f, params } = useData()
 
 const route = useRoute()
+
+
+const partners = computed(() => {
+  return f.value?.partners?.sort((a, b) => a.sort < b.sort ? 1 : -1)
+})
 </script>
 
 <template lang="pug">
@@ -47,7 +52,7 @@ const route = useRoute()
       content
 
   .flex.flex-col.gap-2(v-if="f?.events?.length>0 || f?.list?.events") 
-    .text-3xl.ml-4.p-4 Events
+    .text-3xl.ml-4.py-8 Events
     .flex.flex-wrap.gap-4.z-100.mx-4
       EventCard.max-w-150(
         style="flex:1 1 250px"
@@ -58,12 +63,16 @@ const route = useRoute()
 
 
   .flex.flex-col.gap-2(v-if="f?.projects || f?.list?.projects")
-    .text-3xl.ml-4.p-4 Projects 
+    .text-3xl.ml-4.py-8 Projects 
     .flex.flex-wrap.gap-4.mx-4() 
       ProjectCard.max-w-150(
         style="flex: 1 1 280px"
         v-for="project in [...(f?.projects || data?.projects)]?.sort((a,b)=> a?.sort>b?.sort ? 1 : -1)", :key="project" v-bind="project?.projects_id ? project.projects_id : project") 
 
+
+  .flex.flex-col.gap-4.max-w-160.p-4(v-if="partners?.length>0") 
+    .text-2xl.z-100.py-8 Partners
+    PartnerCard(v-for="partner in partners", v-bind="partner?.partners_id")
 
 
   .flex.flex-col.gap-2(v-if="f?.list?.programs")

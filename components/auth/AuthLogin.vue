@@ -6,9 +6,6 @@ const { userRead, user, userDB, email, password, authData, access_token, submitL
 </script>
 
 <template lang='pug'>
-label.text-lg(for="email") E-mail*:
-  input.rounded-lg.p-2.border-2.border-solid.dark-border-light-300.border-dark-800.shadow-inner.dark-bg-dark-200(id="email" type="text" v-model="email")
-button.text-xl.font-bold.rounded-lg.p-4.border-2.border-solid.dark-border-light-300.border-dark-800.shadow-lg.dark-bg-dark-200(type="submit" @click="claimInvite()") Claim Invite
 form.flex.flex-col.gap-4(@submit.prevent="submitLogin" v-if="!access_token")
   .text-2xl Login to your account
   label.text-lg(for="email") E-mail*:
