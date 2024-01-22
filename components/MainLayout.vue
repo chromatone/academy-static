@@ -16,8 +16,8 @@ const partners = computed(() => {
 </script>
 
 <template lang="pug">
-.flex.flex-col.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site(
-  )
+.flex.flex-wrap.bg-light-500.dark-bg-dark-100.dark-text-light-500.min-h-100dvh.site
+
   .fixed.h-screen.w-screen.bg-center.bg-cover.filter.grayscale-50.brightness-140.opacity-20.blur-2xl(
     :style="{backgroundImage:`url(/covers/${params?.slug}.webp)`}"
     )
@@ -30,8 +30,7 @@ const partners = computed(() => {
       .i-la-sun(v-if="!isDark")
       .i-carbon-moon(v-else)
 
-  .bg-top.bg-contain.bg-no-repeat.z-100.relative.mt-20.mb-10.mx-2.rounded-lg(
-    )
+  .bg-top.bg-contain.bg-no-repeat.z-100.relative.mt-20.mb-10.mx-2.rounded-lg(style="flex: 10 1 400px"  )
     .h-90.w-full.bg-top.bg-cover.max-w-60ch(
       v-if="f?.cover && f.slug"
       :style="{backgroundImage:`url(/covers/${params?.slug}.webp)`}"
@@ -51,39 +50,49 @@ const partners = computed(() => {
     .flex.flex-col.markdown-body.max-w-60ch.bg-light-200.dark-bg-dark-300
       content
 
-  .flex.flex-col.gap-2(v-if="f?.events?.length>0 || f?.list?.events") 
-    .text-3xl.ml-4.py-8 Events
-    .flex.flex-wrap.gap-4.z-100.mx-4
-      EventCard.max-w-150(
-        style="flex:1 1 250px"
-        v-for="event in [...(f?.events || data?.events)].sort((a,b)=>(new Date(a.date)).getTime()>(new Date(b.date)).getTime() ? -1:1)", :key="event" v-bind="event")
+  .flex.flex-col.gap-4.my-12(
+    style="flex: 20 1 400px"
+    )
 
-  .flex.m-4.flex-wrap.gap-4.z-20(v-if="f?.list?.partners")
-    partner-card(v-for="partner in data.partners", v-bind="partner") {{partner}}
+    .flex.flex-col.gap-2(
+      style="flex: 20 1 400px" 
+      v-if="f?.events?.length>0 || f?.list?.events") 
+      .text-3xl.ml-4.py-8 Events
+      .flex.flex-wrap.gap-4.z-100.mx-4
+        EventCard.max-w-150(
+          style="flex:1 1 250px"
+          v-for="event in [...(f?.events || data?.events)].sort((a,b)=>(new Date(a.date)).getTime()>(new Date(b.date)).getTime() ? -1:1)", :key="event" v-bind="event")
 
-
-  .flex.flex-col.gap-2(v-if="f?.projects || f?.list?.projects")
-    .text-3xl.ml-4.py-8 Projects 
-    .flex.flex-wrap.gap-4.mx-4() 
-      ProjectCard.max-w-150(
-        style="flex: 1 1 280px"
-        v-for="project in [...(f?.projects || data?.projects)]?.sort((a,b)=> a?.sort>b?.sort ? 1 : -1)", :key="project" v-bind="project?.projects_id ? project.projects_id : project") 
+    .flex.m-4.flex-wrap.gap-4.z-20(v-if="f?.list?.partners")
+      partner-card(v-for="partner in data.partners", v-bind="partner") {{partner}}
 
 
-  .flex.flex-col.gap-4.max-w-160.p-4(v-if="partners?.length>0") 
-    .text-2xl.z-100.py-8 Partners
-    PartnerCard(v-for="partner in partners", v-bind="partner?.partners_id")
+    .flex.flex-col.gap-2(
+      style="flex: 10 1 500px" 
+      v-if="f?.projects || f?.list?.projects")
+      .text-3xl.ml-4.py-8 Projects 
+      .flex.flex-wrap.gap-4.mx-4() 
+        ProjectCard.max-w-150(
+          style="flex: 1 1 280px"
+          v-for="project in [...(f?.projects || data?.projects)]?.sort((a,b)=> a?.sort>b?.sort ? 1 : -1)", :key="project" v-bind="project?.projects_id ? project.projects_id : project") 
 
 
-  .flex.flex-col.gap-2(v-if="f?.list?.programs")
-    .text-3xl.ml-4.p-4 Our educational programs
-    .flex.flex-wrap.gap-6.mx-2.my-8
-      ProgramCard(
-        v-for="program in data?.programs", :key="program" v-bind="program")
+    .flex.flex-col.gap-4.max-w-160.p-4(
+      style="flex: 1 1 300px" 
+      v-if="partners?.length>0") 
+      .text-2xl.z-100.py-8 Partners
+      PartnerCard(v-for="partner in partners", v-bind="partner?.partners_id")
+
+
+    .flex.flex-col.gap-2(v-if="f?.list?.programs")
+      .text-3xl.ml-4.p-4 Apply to our educational programs
+      .flex.flex-wrap.gap-6.mx-2.my-8
+        ProgramCard(
+          v-for="program in data?.programs", :key="program" v-bind="program")
 
   //- a.flex.flex-wrap.gap-4.items-center.m-6(href="/")
     img.w-10(src="/logo.svg")
-  MainNav.z-100.mt-8
+  MainNav.z-100.mt-8(style="flex: 1 1 100%" )
 
 </template>
 
