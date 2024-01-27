@@ -124,7 +124,7 @@ form.grid.grid-cols-3.gap-4.p-4(
     type="text" v-model="u.comment"
     placeholder="Describe your music skillset and goals that you want to achieve with by participating in the program"
     )
-  .text-lg.col-span-3.p-4.font-italic I want to participate in the educational program as a student. I am OK with paying for such service. Please, add me to the wait list.
+  .text-lg.col-span-3.p-4.font-italic We will review your application and send you an invite to our applicants, students and teachers Discord server. 
 
   button.col-span-3.text-xl.p-4.bg-light-900.dark-bg-dark-700.disabled-opacity-50.rounded-xl(type="submit" :disabled="!valid") {{ valid ? 'Submit your application' :`Please, fill in all the required fields` }}
   //- pre {{ u }}
