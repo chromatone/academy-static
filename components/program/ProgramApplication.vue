@@ -70,23 +70,21 @@ async function sendApplication() {
 
 form.grid.grid-cols-3.gap-4.p-4(
   @submit.prevent.stop="sendApplication()"
-  style="grid-template-columns: 1fr 2fr 1fr"
+  style="grid-template-columns: 0.5fr 1fr 1fr"
   ) 
 
   h2.col-span-3 Program application form 
   label(for="program") Program
   input#program.col-span-2.opacity-50(disabled type="text" v-model="program.title")
 
-  label(for="first_name") First Name*
-  input#first_name.col-span-2(
+  label(for="first_name") Name*
+  input#first_name(
     type="text" v-model="u.first_name"
-    placeholder="Type in your first name"
+    placeholder="First name"
     )
-
-  label(for="last_name") Last Name*
-  input#last_name.col-span-2(
+  input#last_name(
     type="text" v-model="u.last_name"
-    placeholder="And your last name"
+    placeholder="Last name"
     )
 
   label(for="email") Email*
@@ -101,16 +99,15 @@ form.grid.grid-cols-3.gap-4.p-4(
     placeholder="We will invite you to our server"
     )
 
-  label(for="city") City*
-  input#city.col-span-2(
+  label(for="city") Location*
+  input#city(
     type="text" v-model="u.city"
-    placeholder="What city are you from?"
+    placeholder="City"
     )
 
-  label(for="country") Country*
-  input#country.col-span-2(
+  input#country(
     type="text" v-model="u.country"
-    placeholder="What country?"
+    placeholder="Country"
     )
 
   label(for="timezone") Timezone*
@@ -138,6 +135,6 @@ label {
 input,
 select,
 textarea {
-  @apply p-2 rounded dark-bg-dark-500 border-1 border-dark-100/40 dark-border-light-900/40;
+  @apply w-full p-2 rounded dark-bg-dark-500 border-1 border-dark-100/40 dark-border-light-900/40;
 }
 </style>
