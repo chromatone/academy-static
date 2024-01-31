@@ -42,8 +42,9 @@ a.z-200.overflow-hidden.flex.flex-wrap.shadow-lg.hover-shadow-xl.transition.flex
           v-if="projects.length>0"
           ) {{ projects.length }} project{{ (projects.length % 10 === 1 && projects.length !== 11) ? '' : 's' }}
     .text-md.leading-normal.opacity-80.flex-1 {{ description }}
-    .p-4.text-xl.font-bold.text-center(
+    a.p-4.text-xl.font-bold.text-center(
       :style="{backgroundColor:`oklch(${isDark ? 60 : 92}% .07 ${(sort-1)*360/data?.programs.length})`}"
+      :href="`/programs/${slug}/#apply`"
       ) Apply now
 
 </template>

@@ -10,6 +10,9 @@ const props = defineProps({
 
 const searchParams = ref('')
 
+const sent = ref(false)
+const sending = ref(false)
+
 const program = ref('')
 
 const timezone = ref()
@@ -18,7 +21,8 @@ const u = reactive({
   first_name: '',
   last_name: '',
   email: '',
-  discord_username: '',
+  social_platform: 'discord',
+  social: '',
   country: '',
   city: '',
   comment: '',
@@ -33,15 +37,22 @@ onMounted(async () => {
   program.value = await client.request(readItem('programs', props.programId))
 })
 
+const required = {
+  first_name: '',
+  last_name: '',
+  email: '',
+}
+
 
 onMounted(() => {
   let tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   timezone.value = timezones.find(val => val.tzCode == tz)
 })
 
-const valid = computed(() => u.first_name && u.last_name && u.email && u.country && u.city && u.timezone)
+const valid = computed(() => Object.keys(required).reduce((prev, next) => prev && !!u?.[next], true))
 
 async function sendApplication() {
+  sending.value = true
   try {
     const apply = await fetch(
       'https://db.chromatone.center/flows/trigger/fd79e220-bcf4-49b0-93d6-e70f206306dd',
@@ -58,22 +69,39 @@ async function sendApplication() {
         body: JSON.stringify(u),
       });
 
-    console.log(await apply?.json())
+    console.log(await apply?.json?.())
   } catch (e) {
     console.error(e, e?.errors?.[0]?.message, e?.response?.status)
   }
+
+  Object.assign(u, {
+    first_name: '',
+    last_name: '',
+    email: '',
+    social_platform: 'discord',
+    social: '',
+    country: '',
+    city: '',
+    comment: '',
+  })
+  sending.value = false
+  sent.value = true
 }
 
 </script>
 
 <template lang='pug'>
-
-form.grid.grid-cols-3.gap-4.p-4(
+.m-4.p-4.bg-dark-900.bg-opacity-2.flex.flex-col.gap-6(v-if="sent") Thanks for your application! We will review in in 3 business days and send you links for further steps. 
+  button.col-span-3.text-xl.p-4.bg-light-900.dark-bg-dark-700.disabled-opacity-50.rounded-xl(
+    @click="sent = false"
+  ) Apply again
+form#apply.grid.grid-cols-3.gap-4.p-4(
+  v-else
   @submit.prevent.stop="sendApplication()"
   style="grid-template-columns: 0.5fr 1fr 1fr"
   ) 
 
-  h2.col-span-3 Program application form 
+  h2.col-span-3 Program application form {{ valid }}
   label(for="program") Program
   input#program.col-span-2.opacity-50(disabled type="text" v-model="program.title")
 
@@ -93,13 +121,23 @@ form.grid.grid-cols-3.gap-4.p-4(
     placeholder="your@gmail.com"
     )
 
-  label(for="discord_username") Discord username
-  input#discord_username.col-span-2(
-    type="text" v-model="u.discord_username"
-    placeholder="We will invite you to our server"
+  label(for="social") Social
+  select(v-model="u.social_platform")
+    option(value="discord") Discord
+    option(value="telegram") Telegram
+    option(value="instagram") Instagram
+    option(value="whatsapp") Whatsapp 
+    option(value="facebook") Facebook
+    option(value="line") Line 
+    option(value="twitter") Twitter 
+
+
+  input#social(
+    type="text" v-model="u.social"
+    placeholder="@handle or link"
     )
 
-  label(for="city") Location*
+  label(for="city") Location
   input#city(
     type="text" v-model="u.city"
     placeholder="City"
@@ -110,7 +148,7 @@ form.grid.grid-cols-3.gap-4.p-4(
     placeholder="Country"
     )
 
-  label(for="timezone") Timezone*
+  label(for="timezone") Timezone
   select.col-span-2(v-model="timezone")
     option(
       v-for="tz in timezones" :key="tz" :selected="u.timezone.name == tz.name" :value="tz"
@@ -121,10 +159,12 @@ form.grid.grid-cols-3.gap-4.p-4(
     type="text" v-model="u.comment"
     placeholder="Describe your music skillset and goals that you want to achieve with by participating in the program"
     )
-  .text-lg.col-span-3.p-4.font-italic We will review your application and send you an invite to our applicants, students and teachers Discord server. 
 
-  button.col-span-3.text-xl.p-4.bg-light-900.dark-bg-dark-700.disabled-opacity-50.rounded-xl(type="submit" :disabled="!valid") {{ valid ? 'Submit your application' :`Please, fill in all the required fields` }}
-  //- pre {{ u }}
+
+  button.relative.col-span-3.text-xl.p-4.bg-light-900.dark-bg-dark-700.disabled-opacity-50.rounded-xl(type="submit" :disabled="!valid || sending") {{ valid ? 'Submit your application' :`Please, fill in all the required fields first` }}
+    .i-la-redo-alt.animate.animate-spin.absolute.top-5(v-if='sending')
+
+  .text-lg.col-span-3.p-4 Your application will be reviewed in 3 days and we will send you an invite to become a student of this educational program. 
 </template>
 
 <style scoped lang="postcss">

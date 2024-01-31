@@ -22,7 +22,7 @@ const { params, frontmatter: f } = useData()
 
 <EventMedia class="mt-4" :media="f.media" />
 
-## Project
+## This event is a part of the project
 
 <ProjectCard class="m-4 max-w-55ch" v-bind="f?.project" />
 

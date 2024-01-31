@@ -19,3 +19,7 @@ const partners = computed(() => {
 <youtube-embed v-if="f?.youtube_video" :video="f.youtube_video"></youtube-embed>
 
 <!-- @content -->
+
+<h3>This project is part of our educational program</h3>
+
+<ProgramCard class="m-4" v-bind="f?.program" />

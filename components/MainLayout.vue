@@ -30,7 +30,9 @@ const partners = computed(() => {
       .i-la-sun(v-if="!isDark")
       .i-carbon-moon(v-else)
 
-  .bg-top.bg-contain.bg-no-repeat.z-100.relative.mt-20.mb-10.mx-2.rounded-lg(style="flex: 10 1 400px"  )
+  .bg-top.bg-contain.bg-no-repeat.z-100.relative.mt-10.mb-10.mx-2.rounded-lg(
+    style="flex: 0 1 60ch"
+  )
     .h-90.w-full.bg-top.bg-cover.max-w-60ch(
       v-if="f?.cover && f.slug"
       :style="{backgroundImage:`url(/covers/${params?.slug}.webp)`}"
@@ -51,7 +53,7 @@ const partners = computed(() => {
       content
 
   .flex.flex-col.gap-4.my-12(
-    style="flex: 20 1 400px"
+    style="flex: 100 1 200px"
     )
 
     .flex.flex-col.gap-2(
