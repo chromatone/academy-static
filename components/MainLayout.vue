@@ -31,7 +31,7 @@ const partners = computed(() => {
       .i-carbon-moon(v-else)
 
   .bg-top.bg-contain.bg-no-repeat.z-100.relative.mt-10.mb-10.mx-2.rounded-lg(
-    style="flex: 0 1 60ch"
+    style="flex: 0 1 48ch"
   )
     .h-90.w-full.bg-top.bg-cover.max-w-60ch(
       v-if="f?.cover && f.slug"
@@ -52,8 +52,8 @@ const partners = computed(() => {
     .flex.flex-col.markdown-body.max-w-60ch.bg-light-200.dark-bg-dark-300
       content
 
-  .flex.flex-col.gap-4.my-12(
-    style="flex: 100 1 200px"
+  .flex.flex-col.gap-4(
+    style="flex: 1000 1 80px"
     )
 
     .flex.flex-col.gap-2(
@@ -69,7 +69,7 @@ const partners = computed(() => {
       partner-card(v-for="partner in data.partners", v-bind="partner") {{partner}}
 
 
-    .flex.flex-col.gap-2(
+    .flex.flex-col.gap-2.mt-6(
       style="flex: 10 1 500px" 
       v-if="f?.projects || f?.list?.projects")
       .text-3xl.ml-4.py-8 Projects 
@@ -86,11 +86,13 @@ const partners = computed(() => {
       PartnerCard(v-for="partner in partners", v-bind="partner?.partners_id")
 
 
-    .flex.flex-col.gap-2(v-if="f?.list?.programs")
-      .text-3xl.ml-4.p-4 Apply to our educational programs
-      .flex.flex-wrap.gap-6.mx-2.my-8
-        ProgramCard(
-          v-for="program in data?.programs", :key="program" v-bind="program")
+    .flex.flex-col.gap-8.p-4.w-full(
+      style="flex: 1 1"
+      v-if="f?.list?.programs")
+      .text-3xl.py-4 Research programs
+
+      ProgramCard(
+        v-for="program in data?.programs", :key="program" v-bind="program")
 
   //- a.flex.flex-wrap.gap-4.items-center.m-6(href="/")
     img.w-10(src="/logo.svg")

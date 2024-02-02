@@ -101,7 +101,7 @@ form#apply.grid.grid-cols-3.gap-4.p-4(
   style="grid-template-columns: 0.5fr 1fr 1fr"
   ) 
 
-  h2.col-span-3 Program application form {{ valid }}
+  h2.col-span-3 Program application form
   label(for="program") Program
   input#program.col-span-2.opacity-50(disabled type="text" v-model="program.title")
 
@@ -161,7 +161,7 @@ form#apply.grid.grid-cols-3.gap-4.p-4(
     )
 
 
-  button.relative.col-span-3.text-xl.p-4.bg-light-900.dark-bg-dark-700.disabled-opacity-50.rounded-xl(type="submit" :disabled="!valid || sending") {{ valid ? 'Submit your application' :`Please, fill in all the required fields first` }}
+  button.relative.col-span-3.text-xl.p-4.bg-light-900.dark-bg-dark-700.disabled-opacity-50.rounded-xl(type="submit" :disabled="!valid || sending") {{ valid ? 'Submit your application' :`Please, fill in all the required (*) fields first` }}
     .i-la-redo-alt.animate.animate-spin.absolute.top-5(v-if='sending')
 
   .text-lg.col-span-3.p-4 Your application will be reviewed in 3 days and we will send you an invite to become a student of this educational program. 
